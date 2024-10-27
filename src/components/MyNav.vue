@@ -61,24 +61,24 @@ export default {
   computed: {
     // 计算属性 computed 是基于data中数据进行处理的，data数据变化，它也跟着变化
     // 当data中数据没有发生改变时，我们调用computed中函数n次，只会执行一次
-    name() {
+    name () {
       // 在声明路由的时候，每个路由都有自己的名称，就是name
       // vue中获取当前路由name
-      return this.$route.name;
-    },
+      return this.$route.name
+    }
   },
   methods: {
-    to(name) {
+    to (name) {
       // 这个name就是你的路由名字，然后在html上面判断
       // 如果，name是Index，我就给这个加一个class，就是加select
       // 这个select对应的就是绿色的样式
-      if (name === this.name) return false;
+      if (name === this.name) return false
       this.$router.replace({
-        name,
-      });
-    },
-  },
-};
+        name
+      })
+    }
+  }
+}
 </script>
 
 <style scoped>

@@ -5,6 +5,6 @@
 </template>
 
 <script>
-import "./assets/styles/reset.css";
-export default {};
+import './assets/styles/reset.css'
+export default {}
 </script>
