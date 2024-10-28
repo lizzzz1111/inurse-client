@@ -11,9 +11,13 @@ const Message = () => import('../views/message/message.vue')
 // sos
 const Sos = () => import('../views/sos/sos.vue')
 // 社区广场
-const Square = () => import('../views/square/square.vue')
+const Square = () => import('../views/square/Login.vue')
 // 我的
 const Mine = () => import('../views/mine/mine.vue')
+// 注册
+const Register = () => import('../views/square/Register.vue')
+// 登录
+const Login = () => import('../views/square/Login.vue')
 
 // 要告诉 vue 使用 vueRouter
 Vue.use(VueRouter)
@@ -45,6 +49,15 @@ const routes = [
     path: '/mine',
     name: 'mine',
     component: Mine
+  }, {
+    path: '/register',
+    name: 'register',
+    component: Register
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login
   }
 ]
 

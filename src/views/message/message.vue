@@ -6,13 +6,13 @@
 </template>
 
 <script>
-import MyNav from '@/components/MyNav'
+
 export default {
   data () {
     return {}
   },
   components: {
-    MyNav
+
   }
 }
 </script>
