@@ -6,16 +6,16 @@ module.exports = {
   devServer: {
     host: HOST || '0.0.0.0',
     open: true,
-    disableHostCheck: true,
+    allowedHosts: 'all',
     proxy: {
       '/api': {
         target: 'http://127.0.0.1:7001',
         changeOrigin: true,
         ws: true,
         pathRewrite: {
-          '^/api': '',
-        },
-      },
-    },
+          '^/api': ''
+        }
+      }
+    }
   },
 };

@@ -62,10 +62,10 @@
       ></mt-field>
       <div
         class="portrait"
-        style="margin-left:0.3rem;font-size:0.45rem;margin-bottom:0.3rem"
+        style="margin-left: 0.3rem; font-size: 0.45rem; margin-bottom: 0.3rem"
       >
         <span class="details">
-          <div style="font-size:16px;margin:10px">请上传职位证明图片</div>
+          <div style="font-size: 16px; margin: 10px">请上传职位证明图片</div>
           <el-upload
             class="avatar-uploader"
             action="/api/uploadUser"
@@ -92,51 +92,89 @@
 </template>
 
 <script>
+import { Toast } from "mint-ui";
 export default {
   data() {
     return {
       options: [
         {
-          value: '1',
-          label: '子女'
+          value: "1",
+          label: "子女",
         },
         {
-          value: '2',
-          label: '护工'
+          value: "2",
+          label: "护工",
         },
         {
-          value: '3',
-          label: '医生'
-        }
+          value: "3",
+          label: "医生",
+        },
       ],
-      repassword: '',
-      imageUrl: '',
+      repassword: "",
+      imageUrl: "",
       form: {
-        account: '',
-        password: '',
-        identity: '',
-        realname: '',
-        sex: '',
-        age: '',
-        college: '',
-        subject: '',
-        job_img: '',
-        role: '1',
+        account: "",
+        password: "",
+        identity: "",
+        realname: "",
+        sex: "",
+        age: "",
+        college: "",
+        subject: "",
+        job_img: "",
+        role: "1",
         status: 0,
-      }
+      },
     };
   },
   methods: {
     register() {
-      // 注册逻辑
+      if (this.form.password != this.repassword) {
+        Toast({
+          message: "两次密码输入的不一致，请重新输入",
+          position: "middle",
+          duration: 3000,
+        });
+      } else {
+        // 角色 role  1代表子女，2代表医护，3代表医生
+        // 授权状态 status  0表示为申请，1表示未授权，2表示审批通过，3表示审批拒绝
+        if (this.form.role === "2" || this.form.role === "3") {
+          this.form.status = 1;
+        }
+        this.$http({
+          url: "/api/register", // 请求地址
+          method: "post", // 设置请求方式
+          data: this.form, // 把注册参数放进请求中
+        })
+          .then((e) => {
+            // 处理请求返回的结果
+            // console.log(e.data)
+            if (e.data.code === "1") {
+              Toast({
+                message: "注册成功",
+                position: "middle",
+                duration: 3000,
+              });
+              this.$router.push({
+                name: "login",
+              });
+            } else {
+              Toast({
+                message: "注册失败",
+                position: "middle",
+                duration: 3000,
+              });
+            }
+          })
+          .catch((e) => {
+            // 处理请求发生的异常
+            console.log(e);
+          });
+      }
     },
-    handleAvatarSuccess() {
-      // 头像上传成功处理逻辑
-    },
-    beforeAvatarUpload() {
-      // 上传前的处理逻辑
-    }
-  }
+    handleAvatarSuccess() {},
+    beforeAvatarUpload() {},
+  },
 };
 </script>
 
