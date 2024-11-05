@@ -7,6 +7,7 @@ import '@/plugins/element-ui'
 import Mint from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import '@/http'
+import '@/store';
 import VueAwesomeSwiper from "vue-awesome-swiper";
 
 
